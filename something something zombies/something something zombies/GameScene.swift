@@ -31,6 +31,7 @@ class GameScene: SKScene {
         self.rageLabel = self.childNode(withName: "//rageCount") as? SKLabelNode
     }
     
+    //Raise Dead Button was touched
     func raiseDead() {
         if self.fear < 10 {
             return
@@ -61,7 +62,8 @@ class GameScene: SKScene {
             }
         }
     }
-        
+    
+    // Called before each frame is rendered
     override func update(_ currentTime: TimeInterval) {
         if self.timer == nil {
             self.timer = currentTime
@@ -76,7 +78,7 @@ class GameScene: SKScene {
             
             //Handle Van Helsing killing zombies
             vanHelsing += 1
-            if (vanHelsing > 50) {
+            if (vanHelsing > 100) {
                 if zombies.count > 0 {
                     rageMomentum = 1.0
                 } else {
@@ -95,15 +97,14 @@ class GameScene: SKScene {
         
         //TODO: alter end game message based on end condition
         if fear >= 100 && self.viewController != nil {
-            self.viewController!.endGame()
+            self.viewController!.endGame(won: true)
         }
         
         //TODO: alter end game message based on end condition
         if rage >= 100 && self.viewController != nil {
-            self.viewController!.endGame()
+            self.viewController!.endGame(won: false)
         }
         
-        // Called before each frame is rendered
         if self.fearLabel != nil {
             self.fearLabel!.text = String(self.fear)
         }

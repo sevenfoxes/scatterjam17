@@ -12,8 +12,17 @@ import SpriteKit
 class EndGame: SKScene {
     
     private var playAgainButton : SKLabelNode?
+    private var messageLabel: SKLabelNode?
+    var message: String?
     
     var viewController: GameViewController?
+    
+    override func didMove(to view: SKView) {
+        messageLabel = self.childNode(withName: "//message") as? SKLabelNode
+        if self.message != nil {
+            messageLabel!.text = message
+        }
+    }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.playAgainButton = self.childNode(withName: "//playAgain") as? SKLabelNode

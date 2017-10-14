@@ -12,13 +12,17 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
-    func endGame() {
+    func endGame(won: Bool) {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'EndGame.sks'
             if let scene = EndGame(fileNamed: "EndGame") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 scene.viewController = self
+                scene.message = "You did it!"
+                if won == false {
+                    scene.message = "Better luck next time!"
+                }
                 
                 // Present the scene
                 view.presentScene(scene)
