@@ -9,7 +9,16 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+//Define physics categories
+struct PhysicsCategory {
+    static let None      : UInt32 = 0
+    static let All       : UInt32 = UInt32.max
+    static let VanHelsing   : UInt32 = 0b1       // 1
+    static let Monster: UInt32 = 0b10            // 2
+    static let Zombie: UInt32 = 0b110            // 6
+}
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var tapCount: Int = 0
     private var fear: Int = 50
@@ -26,11 +35,24 @@ class GameScene: SKScene {
     
     var viewController: GameViewController?
     
+    //Scene is moved to the view so initialize
     override func didMove(to view: SKView) {
+        physicsWorld.gravity = CGVector.zero
+        physicsWorld.contactDelegate = self
         self.raiseDeadButton = self.childNode(withName: "//raiseDead") as? SKLabelNode
         self.fearLabel = self.childNode(withName: "//fearCount") as? SKLabelNode
         self.rageLabel = self.childNode(withName: "//rageCount") as? SKLabelNode
-        self.addChild(self.vanHelsing)
+
+        //TODO: calculate the size this way after we switch from SKLabelNodes to SKSpriteNodes
+        //vanHelsing.physicsBody = SKPhysicsBody(rectangleOf: vanHelsing.size)
+        vanHelsing.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 30.0,
+                                                                   height: 30.0))
+        vanHelsing.physicsBody?.isDynamic = true
+        vanHelsing.physicsBody?.categoryBitMask = PhysicsCategory.VanHelsing
+        vanHelsing.physicsBody?.contactTestBitMask = PhysicsCategory.Monster
+        vanHelsing.physicsBody?.collisionBitMask = PhysicsCategory.None
+        
+        self.addChild(vanHelsing)
         vanHelsing.spawn()
         vanHelsing.move()
     }
@@ -43,10 +65,31 @@ class GameScene: SKScene {
         self.fear = self.fear - 10
         
         let zombie: Zombie = Zombie()
+        //TODO: calculate the size this way after we switch from SKLabelNodes to SKSpriteNodes
+        //zombie.physicsBody = SKPhysicsBody(rectangleOf: zombie.size)
+        zombie.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 30.0,
+                                                               height: 30.0))
+        zombie.physicsBody?.isDynamic = true
+        zombie.physicsBody?.categoryBitMask = PhysicsCategory.Monster
+        zombie.physicsBody?.contactTestBitMask = PhysicsCategory.VanHelsing
+        zombie.physicsBody?.collisionBitMask = PhysicsCategory.None
+        
         self.addChild(zombie)
         zombie.spawn()
         zombie.move()
+        
         self.zombies.append(zombie)
+    }
+    
+    //Called when Van Helsing collides with a monster (called by didBegin). Removes zombie and increases rage
+    func slayMonster(monster: Zombie) {
+        rage = Int(Double(rage) + 5.0)
+        for (index, zombie) in zombies.enumerated() {
+            if zombie == monster {
+                zombies.remove(at: index)
+            }
+        }
+        monster.removeFromParent()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -74,7 +117,7 @@ class GameScene: SKScene {
                 fearCharge = fearCharge - 1.0
             }
             
-            //Handle Van Helsing killing zombies
+            //Handle Van Helsing Inspiring Courage
             inspireCourageCounter += 1
             if (inspireCourageCounter > 100) {
                 //TODO: call some inspireCourage method on vanHelsing to animate action
@@ -85,13 +128,6 @@ class GameScene: SKScene {
                 }
                 rage = Int(Double(rage) + rageMomentum)
                 inspireCourageCounter = 0
-                /* move this to collision detection
-                if zombies.count > 0 {
-                    rage = Int(Double(rage) + 5.0)
-                    let killedZombie = zombies.popLast()
-                    self.removeChildren(in: [killedZombie!])
-                }
-                */
             }
             
             self.timer = currentTime
@@ -112,6 +148,27 @@ class GameScene: SKScene {
         }
         if self.rageLabel != nil {
             self.rageLabel!.text = String(self.rage)
+        }
+    }
+    
+    //Called when a collision is detected
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        if ((firstBody.categoryBitMask & PhysicsCategory.VanHelsing != 0) &&
+            (secondBody.categoryBitMask & PhysicsCategory.Monster != 0)) {
+            if let monster = secondBody.node as? Zombie {
+                slayMonster(monster: monster)
+            }
         }
     }
 }
