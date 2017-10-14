@@ -11,9 +11,21 @@ import SpriteKit
 import GameplayKit
 
 class GameViewController: UIViewController {
+    var zombieCount = 0
+    
+    @IBOutlet weak var buttonRounder: UIButton!
+    @IBOutlet weak var zombieCountDisplay: UILabel!
 
+    @IBAction func growZombie(_ sender: UIButton) {
+        zombieCount += 1
+        
+        zombieCountDisplay.text = "There are \(zombieCount) zombies"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        buttonRounder.layer.cornerRadius = 4
         
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'

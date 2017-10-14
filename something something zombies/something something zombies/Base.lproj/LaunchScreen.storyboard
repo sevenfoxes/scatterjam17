@@ -1,10 +1,19 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Avenir.ttc">
+            <string>Avenir-Heavy</string>
+            <string>Avenir-HeavyOblique</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -13,13 +22,51 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SOMETHING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zJe-ab-mar">
+                                <rect key="frame" x="25" y="148" width="324" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="h3R-Ek-jpd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="31"/>
+                                <color key="textColor" red="0.24269051849842072" green="0.54636001586914062" blue="0.1489330381155014" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="SOMETHING" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bzB-Qh-Wth">
+                                <rect key="frame" x="25" y="190" width="324" height="45"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="24"/>
+                                <color key="textColor" red="0.15329001875642859" green="0.54657140544041449" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Zombies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xy5-LG-nm8">
+                                <rect key="frame" x="25" y="239" width="324" height="33"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="wNA-i2-BhS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="27"/>
+                                <color key="textColor" red="0.24269051849842072" green="0.54636001586914062" blue="0.1489330381155014" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.11650304288123121" green="0.089865971578573289" blue="0.17833144430051817" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="bzB-Qh-Wth" firstAttribute="trailing" secondItem="xy5-LG-nm8" secondAttribute="trailing" id="6dr-ON-AeW"/>
+                            <constraint firstItem="zJe-ab-mar" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="25" id="Aej-X8-vrv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="xy5-LG-nm8" secondAttribute="bottom" constant="397" id="Hli-GB-nKx"/>
+                            <constraint firstItem="bzB-Qh-Wth" firstAttribute="top" secondItem="zJe-ab-mar" secondAttribute="bottom" constant="2" id="IAn-DZ-78d"/>
+                            <constraint firstItem="zJe-ab-mar" firstAttribute="leading" secondItem="bzB-Qh-Wth" secondAttribute="leading" id="OO2-0v-Afi"/>
+                            <constraint firstItem="zJe-ab-mar" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="WQg-vC-Q3I"/>
+                            <constraint firstItem="zJe-ab-mar" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="126" id="Z8K-Ay-tYM"/>
+                            <constraint firstItem="bzB-Qh-Wth" firstAttribute="leading" secondItem="xy5-LG-nm8" secondAttribute="leading" id="cK9-aQ-pYB"/>
+                            <constraint firstItem="xy5-LG-nm8" firstAttribute="top" secondItem="bzB-Qh-Wth" secondAttribute="bottom" constant="4" id="nR9-M2-W2B"/>
+                            <constraint firstItem="zJe-ab-mar" firstAttribute="trailing" secondItem="bzB-Qh-Wth" secondAttribute="trailing" id="nS7-HC-l65"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
 </document>

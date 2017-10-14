@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A278a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BV1-FR-VrT">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +12,61 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="something_something_zombies" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There are no zombies" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiD-xB-MNV">
+                                <rect key="frame" x="104" y="527" width="166" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38" id="YH2-My-CKp"/>
+                                    <constraint firstAttribute="width" constant="166" id="wqX-OQ-e77"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.76426894430051817" green="0.0" blue="0.02279955151594187" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pn-SY-TXA">
+                                <rect key="frame" x="87" y="581" width="200" height="40"/>
+                                <color key="backgroundColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="0jL-iV-qTM"/>
+                                    <constraint firstAttribute="height" constant="40" id="3RW-Gn-apW"/>
+                                </constraints>
+                                <state key="normal" title="grow zombie">
+                                    <color key="titleColor" red="0.76722574234008789" green="0.16198344528675079" blue="0.10965506732463837" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <action selector="growZombie:" destination="BV1-FR-VrT" eventType="touchUpInside" id="PQQ-PI-F5Q"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="iiD-xB-MNV" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="3S1-LJ-S8C"/>
+                            <constraint firstItem="iiD-xB-MNV" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="507" id="BK0-DB-cvk"/>
+                            <constraint firstItem="1pn-SY-TXA" firstAttribute="top" secondItem="iiD-xB-MNV" secondAttribute="bottom" constant="16" id="Chr-XO-7rD"/>
+                            <constraint firstItem="iiD-xB-MNV" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="DcC-ty-ZTu"/>
+                            <constraint firstItem="4qk-I5-YsI" firstAttribute="trailing" secondItem="iiD-xB-MNV" secondAttribute="trailing" constant="105" id="LuY-ca-Szj"/>
+                            <constraint firstItem="iiD-xB-MNV" firstAttribute="top" secondItem="4qk-I5-YsI" secondAttribute="top" constant="507" id="Szt-q2-MTw"/>
+                            <constraint firstItem="1pn-SY-TXA" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="VNp-Uf-JUb"/>
+                            <constraint firstItem="iiD-xB-MNV" firstAttribute="leading" secondItem="4qk-I5-YsI" secondAttribute="leading" constant="104" id="Y3H-Dq-vqQ"/>
+                            <constraint firstItem="1pn-SY-TXA" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="bvU-qO-9IT"/>
+                            <constraint firstItem="1pn-SY-TXA" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="cgD-Bo-CVL"/>
+                            <constraint firstItem="1pn-SY-TXA" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="ieN-mQ-dHD"/>
+                            <constraint firstItem="iiD-xB-MNV" firstAttribute="centerX" secondItem="3se-qz-xqx" secondAttribute="centerX" id="zVN-9n-fSR"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="4qk-I5-YsI"/>
                     </view>
+                    <connections>
+                        <outlet property="buttonRounder" destination="1pn-SY-TXA" id="KZi-Lj-0Yy"/>
+                        <outlet property="zombieCountDisplay" destination="iiD-xB-MNV" id="44y-hM-AEt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="115.5" y="115.5"/>
         </scene>
     </scenes>
 </document>
