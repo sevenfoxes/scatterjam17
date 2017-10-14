@@ -12,12 +12,27 @@ import GameplayKit
 
 class GameViewController: UIViewController {
 
+    func endGame() {
+        if let view = self.view as! SKView? {
+            // Load the SKScene from 'EndGame.sks'
+            if let scene = EndGame(fileNamed: "EndGame") {
+                // Set the scale mode to scale to fit the window
+                scene.scaleMode = .aspectFill
+                scene.viewController = self
+                
+                // Present the scene
+                view.presentScene(scene)
+            }
+        }
+    }
+    
     func startGame() {
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = GameScene(fileNamed: "GameScene") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
+                scene.viewController = self
                 
                 // Present the scene
                 view.presentScene(scene)
@@ -28,7 +43,7 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         
         if let view = self.view as! SKView? {
-            // Load the SKScene from 'GameScene.sks'
+            // Load the SKScene from 'StartScreen.sks'
             if let scene = StartScreen(fileNamed: "StartScreen") {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill

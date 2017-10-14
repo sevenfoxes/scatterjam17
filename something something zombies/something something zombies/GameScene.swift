@@ -13,6 +13,8 @@ class GameScene: SKScene {
     
     private var label : SKLabelNode?
     private var spinnyNode : SKShapeNode?
+    private var tapCount: Int = 0
+    var viewController: GameViewController?
     
     override func didMove(to view: SKView) {
         
@@ -55,10 +57,14 @@ class GameScene: SKScene {
     }
     
     func touchUp(atPoint pos : CGPoint) {
+        tapCount += 1
         if let n = self.spinnyNode?.copy() as! SKShapeNode? {
             n.position = pos
             n.strokeColor = SKColor.red
             self.addChild(n)
+        }
+        if tapCount > 20 && viewController != nil {
+            viewController!.endGame()
         }
     }
     

@@ -21,7 +21,7 @@ class StartScreen: SKScene {
         for t in touches {
             touch = t.location(in: self)
             for n in self.nodes(at: touch) {
-                if n.name == "startButton" && viewController != nil {
+                if n == self.startButton && viewController != nil {
                     viewController!.startGame()
                 }
             }

@@ -19,6 +19,7 @@
 		EBF7DC291F91AC2800818617 /* EndGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC281F91AC2800818617 /* EndGame.swift */; };
 		EBF7DC2B1F91B9A700818617 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC2A1F91B9A600818617 /* StartScreen.swift */; };
 		EBF7DC2D1F91BE1B00818617 /* StartScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */; };
+		EBF7DC2F1F91D58600818617 /* EndGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBF7DC2E1F91D58600818617 /* EndGame.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		EBF7DC281F91AC2800818617 /* EndGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGame.swift; sourceTree = "<group>"; };
 		EBF7DC2A1F91B9A600818617 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScreen.sks; sourceTree = "<group>"; };
+		EBF7DC2E1F91D58600818617 /* EndGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndGame.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				7B86D0751F91A428007E2AE8 /* Main.storyboard */,
 				EBF7DC2A1F91B9A600818617 /* StartScreen.swift */,
 				EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */,
+				EBF7DC2E1F91D58600818617 /* EndGame.sks */,
 			);
 			path = "something something zombies";
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B86D0771F91A428007E2AE8 /* Main.storyboard in Resources */,
+				EBF7DC2F1F91D58600818617 /* EndGame.sks in Resources */,
 				7B86D06E1F91A428007E2AE8 /* GameScene.sks in Resources */,
 				7B86D0791F91A428007E2AE8 /* Assets.xcassets in Resources */,
 				EBF7DC2D1F91BE1B00818617 /* StartScreen.sks in Resources */,
