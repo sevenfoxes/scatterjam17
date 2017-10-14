@@ -38,16 +38,10 @@ class GameScene: SKScene {
         }
         self.fear = self.fear - 10
         
-        let zombie: SKLabelNode = SKLabelNode()
-        zombie.text = "Z"
-        zombie.fontColor = SKColor.green
-        zombie.fontName = "Helvetica"
-        zombie.fontSize = 48
-        //zombie position is based on the center of the screen so get the random x coordinate and then subtract it by half the screen width to get the right position. Same with y.
-        let randomPosition = CGPoint(x:CGFloat(arc4random()).truncatingRemainder(dividingBy: size.width) - size.width / 2,
-                                     y: CGFloat(arc4random()).truncatingRemainder(dividingBy: size.height) - size.height / 2)
-        zombie.position = randomPosition
+        let zombie: Zombie = Zombie()
         self.addChild(zombie)
+        zombie.spawn()
+        zombie.shamble()
         self.zombies.append(zombie)
     }
     
@@ -94,13 +88,13 @@ class GameScene: SKScene {
             
             self.timer = currentTime
         }
-        
-        //TODO: alter end game message based on end condition
+
+        //Trigger end game with winning message
         if fear >= 100 && self.viewController != nil {
             self.viewController!.endGame(won: true)
         }
         
-        //TODO: alter end game message based on end condition
+        //Trigger end game with losing message
         if rage >= 100 && self.viewController != nil {
             self.viewController!.endGame(won: false)
         }

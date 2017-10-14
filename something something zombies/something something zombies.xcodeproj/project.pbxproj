@@ -20,6 +20,7 @@
 		EBF7DC2B1F91B9A700818617 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC2A1F91B9A600818617 /* StartScreen.swift */; };
 		EBF7DC2D1F91BE1B00818617 /* StartScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */; };
 		EBF7DC2F1F91D58600818617 /* EndGame.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBF7DC2E1F91D58600818617 /* EndGame.sks */; };
+		EBF7DC311F926D9C00818617 /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC301F926D9C00818617 /* Zombie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		EBF7DC2A1F91B9A600818617 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScreen.sks; sourceTree = "<group>"; };
 		EBF7DC2E1F91D58600818617 /* EndGame.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = EndGame.sks; sourceTree = "<group>"; };
+		EBF7DC301F926D9C00818617 /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				EBF7DC2A1F91B9A600818617 /* StartScreen.swift */,
 				EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */,
 				EBF7DC2E1F91D58600818617 /* EndGame.sks */,
+				EBF7DC301F926D9C00818617 /* Zombie.swift */,
 			);
 			path = "something something zombies";
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				7B86D0721F91A428007E2AE8 /* GameScene.swift in Sources */,
 				EBF7DC291F91AC2800818617 /* EndGame.swift in Sources */,
 				EBF7DC2B1F91B9A700818617 /* StartScreen.swift in Sources */,
+				EBF7DC311F926D9C00818617 /* Zombie.swift in Sources */,
 				7B86D0741F91A428007E2AE8 /* GameViewController.swift in Sources */,
 				7B86D06C1F91A428007E2AE8 /* AppDelegate.swift in Sources */,
 			);
