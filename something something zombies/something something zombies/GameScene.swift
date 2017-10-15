@@ -23,7 +23,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var tapCount: Int = 0
     private var fear: Int = 0
     private var rage: Int = 0
-    private var raiseDeadButton: SKLabelNode?
+    private var raiseDeadButton: SKSpriteNode?
     private var rageLabel: SKLabelNode?
     private var fearLabel: SKLabelNode?
     private var fearCharge: Double = 0
@@ -32,6 +32,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var vanHelsing: VanHelsing = VanHelsing()
     private var inspireCourageCounter: Int = 0
     private var rageMomentum: Double = 1
+    private var raiseDeadEnabled: Bool = false
     
     var viewController: GameViewController?
     
@@ -39,9 +40,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         physicsWorld.gravity = CGVector.zero
         physicsWorld.contactDelegate = self
-        self.raiseDeadButton = self.childNode(withName: "//raiseDead") as? SKLabelNode
+        self.raiseDeadButton = SKSpriteNode(imageNamed: "raise-dead-disabled")
+        raiseDeadButton?.position = CGPoint(x: -270.0, y: -540.0)
         self.fearLabel = self.childNode(withName: "//fearCount") as? SKLabelNode
         self.rageLabel = self.childNode(withName: "//rageCount") as? SKLabelNode
+        
+        self.addChild(raiseDeadButton!)
         
         let backgroundMusic = SKAudioNode(fileNamed: "bg.mp3")
         backgroundMusic.autoplayLooped = true
@@ -115,6 +119,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         if self.timer == nil {
             self.timer = currentTime
+        }
+        
+        if raiseDeadEnabled == false && fear >= 10 {
+            raiseDeadEnabled = true
+            raiseDeadButton?.texture = SKTexture(imageNamed: "raise-dead")
+        }
+        if raiseDeadEnabled == true && fear < 10 {
+            raiseDeadEnabled = false
+            raiseDeadButton?.texture = SKTexture(imageNamed: "raise-dead-disabled")
         }
         
         if currentTime - self.timer! > 0.1 {
