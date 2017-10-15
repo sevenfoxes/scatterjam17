@@ -21,7 +21,7 @@ struct PhysicsCategory {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var draculas: [Dracula] = [Dracula]()
-    private var fear: Int = 300
+    private var fear: Int = 0
     private var fearCharge: Double = 0
     private var fearLabel: SKLabelNode?
     private var frankensteins: [Frankenstein] = [Frankenstein]()
@@ -59,12 +59,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.raiseDeadButton = SKSpriteNode(imageNamed: "raise-dead-disabled")
         raiseDeadButton?.position = CGPoint(x: -250.0, y: -540.0)
+        raiseDeadButton?.zPosition = 2
         self.fullMoonButton = SKSpriteNode(imageNamed: "full-moon-disabled")
         fullMoonButton?.position = CGPoint(x: -87.5, y: -540.0)
+        fullMoonButton?.zPosition = 2
         self.itsAliveButton = SKSpriteNode(imageNamed: "its-alive-disabled")
         itsAliveButton?.position = CGPoint(x: 75.0, y: -540.0)
+        itsAliveButton?.zPosition = 2
         self.suckBloodButton = SKSpriteNode(imageNamed: "suck-blood-disabled")
         suckBloodButton?.position = CGPoint(x: 237.5, y: -540.0)
+        suckBloodButton?.zPosition = 2
         self.fearLabel = self.childNode(withName: "//fearCount") as? SKLabelNode
         self.rageLabel = self.childNode(withName: "//rageCount") as? SKLabelNode
         
@@ -240,21 +244,55 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         monster.removeFromParent()
     }
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        var touch: CGPoint
+        for t in touches {
+            touch = t.location(in: self)
+            for n in self.nodes(at: touch) {
+                if n == self.raiseDeadButton && raiseDeadEnabled == true {
+                    raiseDeadButton?.texture = SKTexture(imageNamed: "raise-dead-disabled")
+                }
+                if n == self.fullMoonButton && fullMoonEnabled == true {
+                    fullMoonButton?.texture = SKTexture(imageNamed: "full-moon-disabled")
+                }
+                if n == self.itsAliveButton && itsAliveEnabled == true {
+                    itsAliveButton?.texture = SKTexture(imageNamed: "its-alive-disabled")
+                }
+                if n == self.suckBloodButton && suckBloodEnabled == true {
+                    suckBloodButton?.texture = SKTexture(imageNamed: "suck-blood-disabled")
+                }
+            }
+        }
+    }
+    
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         var touch: CGPoint
         for t in touches {
             touch = t.location(in: self)
             for n in self.nodes(at: touch) {
                 if n == self.raiseDeadButton {
+                    if raiseDeadEnabled == true {
+                        raiseDeadButton?.texture = SKTexture(imageNamed: "raise-dead")
+                    }
                     raiseDead()
                 }
                 if n == self.fullMoonButton {
+                    if fullMoonEnabled == true {
+                        fullMoonButton?.texture = SKTexture(imageNamed: "full-moon")
+                    }
                     fullMoon()
                 }
                 if n == self.itsAliveButton {
+                    if itsAliveEnabled == true {
+                        itsAliveButton?.texture = SKTexture(imageNamed: "its-alive")
+                    }
                     itsAlive()
                 }
                 if n == self.suckBloodButton {
+                    if suckBloodEnabled == true {
+                        suckBloodButton?.texture = SKTexture(imageNamed: "suck-blood")
+                    }
                     suckBlood()
                 }
             }
