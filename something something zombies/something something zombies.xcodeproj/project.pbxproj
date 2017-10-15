@@ -16,6 +16,7 @@
 		7B86D0791F91A428007E2AE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B86D0781F91A428007E2AE8 /* Assets.xcassets */; };
 		7B86D0871F91A429007E2AE8 /* something_something_zombiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B86D0861F91A429007E2AE8 /* something_something_zombiesTests.swift */; };
 		7B86D0921F91A429007E2AE8 /* something_something_zombiesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B86D0911F91A429007E2AE8 /* something_something_zombiesUITests.swift */; };
+		7BFA1F3C1F931AF900A82175 /* ground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7BFA1F3B1F931AF900A82175 /* ground.sks */; };
 		EBF7DC291F91AC2800818617 /* EndGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC281F91AC2800818617 /* EndGame.swift */; };
 		EBF7DC2B1F91B9A700818617 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC2A1F91B9A600818617 /* StartScreen.swift */; };
 		EBF7DC2D1F91BE1B00818617 /* StartScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */; };
@@ -23,7 +24,6 @@
 		EBF7DC311F926D9C00818617 /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC301F926D9C00818617 /* Zombie.swift */; };
 		EBF7DC331F927A2900818617 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC321F927A2900818617 /* Character.swift */; };
 		EBF7DC351F927B0900818617 /* VanHelsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC341F927B0900818617 /* VanHelsing.swift */; };
-		EBF7DC391F93233400818617 /* Wolfman.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC381F93233400818617 /* Wolfman.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +59,7 @@
 		7B86D08D1F91A429007E2AE8 /* something something zombiesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "something something zombiesUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B86D0911F91A429007E2AE8 /* something_something_zombiesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = something_something_zombiesUITests.swift; sourceTree = "<group>"; };
 		7B86D0931F91A429007E2AE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7BFA1F3B1F931AF900A82175 /* ground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ground.sks; sourceTree = "<group>"; };
 		EBF7DC281F91AC2800818617 /* EndGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGame.swift; sourceTree = "<group>"; };
 		EBF7DC2A1F91B9A600818617 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScreen.sks; sourceTree = "<group>"; };
@@ -67,7 +68,6 @@
 		EBF7DC321F927A2900818617 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		EBF7DC341F927B0900818617 /* VanHelsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanHelsing.swift; sourceTree = "<group>"; };
 		EBF7DC361F92DC8D00818617 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bg.mp3; path = Assets.xcassets/bg.mp3; sourceTree = "<group>"; };
-		EBF7DC381F93233400818617 /* Wolfman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wolfman.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +121,7 @@
 				7B86D06F1F91A428007E2AE8 /* Actions.sks */,
 				7B86D06B1F91A428007E2AE8 /* AppDelegate.swift */,
 				7B86D0781F91A428007E2AE8 /* Assets.xcassets */,
+				7BFA1F3B1F931AF900A82175 /* ground.sks */,
 				EBF7DC281F91AC2800818617 /* EndGame.swift */,
 				7B86D06D1F91A428007E2AE8 /* GameScene.sks */,
 				7B86D0711F91A428007E2AE8 /* GameScene.swift */,
@@ -134,7 +135,6 @@
 				EBF7DC301F926D9C00818617 /* Zombie.swift */,
 				EBF7DC321F927A2900818617 /* Character.swift */,
 				EBF7DC341F927B0900818617 /* VanHelsing.swift */,
-				EBF7DC381F93233400818617 /* Wolfman.swift */,
 			);
 			path = "something something zombies";
 			sourceTree = "<group>";
@@ -264,6 +264,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7BFA1F3C1F931AF900A82175 /* ground.sks in Resources */,
 				7B86D0771F91A428007E2AE8 /* Main.storyboard in Resources */,
 				EBF7DC2F1F91D58600818617 /* EndGame.sks in Resources */,
 				7B86D06E1F91A428007E2AE8 /* GameScene.sks in Resources */,
@@ -297,7 +298,6 @@
 				7B86D0721F91A428007E2AE8 /* GameScene.swift in Sources */,
 				EBF7DC291F91AC2800818617 /* EndGame.swift in Sources */,
 				EBF7DC351F927B0900818617 /* VanHelsing.swift in Sources */,
-				EBF7DC391F93233400818617 /* Wolfman.swift in Sources */,
 				EBF7DC331F927A2900818617 /* Character.swift in Sources */,
 				EBF7DC2B1F91B9A700818617 /* StartScreen.swift in Sources */,
 				EBF7DC311F926D9C00818617 /* Zombie.swift in Sources */,
