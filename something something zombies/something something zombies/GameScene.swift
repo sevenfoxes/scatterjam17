@@ -21,7 +21,7 @@ struct PhysicsCategory {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private var tapCount: Int = 0
-    private var fear: Int = 50
+    private var fear: Int = 0
     private var rage: Int = 0
     private var raiseDeadButton: SKLabelNode?
     private var rageLabel: SKLabelNode?
@@ -46,6 +46,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let backgroundMusic = SKAudioNode(fileNamed: "bg.mp3")
         backgroundMusic.autoplayLooped = true
         addChild(backgroundMusic)
+        
+        spawnZombie()
+        spawnZombie()
+        spawnZombie()
 
         vanHelsing.physicsBody = SKPhysicsBody(rectangleOf: vanHelsing.size)
         vanHelsing.physicsBody?.isDynamic = true
@@ -65,6 +69,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         self.fear = self.fear - 10
         
+        spawnZombie()
+    }
+    
+    //Create a zombie
+    func spawnZombie() {
         let zombie: Zombie = Zombie()
         zombie.physicsBody = SKPhysicsBody(rectangleOf: zombie.size)
         zombie.physicsBody?.isDynamic = true
@@ -132,7 +141,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         //Trigger end game with winning message
-        if fear >= 100 && self.viewController != nil {
+        if fear >= 1000 && self.viewController != nil {
             self.viewController!.endGame(won: true)
         }
         
