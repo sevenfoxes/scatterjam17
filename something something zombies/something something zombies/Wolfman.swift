@@ -16,7 +16,7 @@ class Wolfman: Character {
     
     override func animateLeft() {
         let runAnimation = SKAction.animate(with: runLeftTextures,
-                                                timePerFrame: 0.4)
+                                            timePerFrame: 0.4)
         let runForever = SKAction.repeatForever(runAnimation)
         
         self.run(runForever)
@@ -24,7 +24,7 @@ class Wolfman: Character {
     
     override func animateRight() {
         let runAnimation = SKAction.animate(with: runRightTextures,
-                                                timePerFrame: 0.4)
+                                            timePerFrame: 0.4)
         let runForever = SKAction.repeatForever(runAnimation)
         
         self.run(runForever)
@@ -40,3 +40,4 @@ class Wolfman: Character {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
