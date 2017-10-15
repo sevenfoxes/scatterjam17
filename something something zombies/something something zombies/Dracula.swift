@@ -1,5 +1,5 @@
 //
-//  Frankenstein.swift
+//  Dracula.swift
 //  something something zombies
 //
 //  Created by Pedro Albea on 10/15/17.
@@ -9,14 +9,14 @@
 import Foundation
 import SpriteKit
 
-class Frankenstein: Character {
+class Dracula: Character {
     
-    let stumbleRightTextures: [SKTexture] = [SKTexture(imageNamed: "frankenstein"), SKTexture(imageNamed: "frankenstein-step")]
-    let stumbleLeftTextures: [SKTexture] = [SKTexture(imageNamed: "frankenstein-left"), SKTexture(imageNamed: "frankenstein-step-left")]
+    let stumbleRightTextures: [SKTexture] = [SKTexture(imageNamed: "dracula"), SKTexture(imageNamed: "dracula-step")]
+    let stumbleLeftTextures: [SKTexture] = [SKTexture(imageNamed: "dracula-left"), SKTexture(imageNamed: "dracula-step-left")]
     
     override func animateLeft() {
         let stumbleAnimation = SKAction.animate(with: stumbleLeftTextures,
-                                            timePerFrame: 0.4)
+                                                timePerFrame: 0.4)
         let stumbleForever = SKAction.repeatForever(stumbleAnimation)
         
         self.run(stumbleForever)
@@ -24,20 +24,19 @@ class Frankenstein: Character {
     
     override func animateRight() {
         let stumbleAnimation = SKAction.animate(with: stumbleRightTextures,
-                                            timePerFrame: 0.4)
+                                                timePerFrame: 0.4)
         let stumbleForever = SKAction.repeatForever(stumbleAnimation)
         
         self.run(stumbleForever)
     }
     
     init() {
-        let texture = SKTexture(imageNamed: "frankenstein")
+        let texture = SKTexture(imageNamed: "dracula")
         super.init(texture: texture, color: UIColor.clear, size: texture.size())
-        moveSpeed = 25.0
+        moveSpeed = 120.0
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
-

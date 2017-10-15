@@ -18,6 +18,7 @@
 		7B86D0921F91A429007E2AE8 /* something_something_zombiesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B86D0911F91A429007E2AE8 /* something_something_zombiesUITests.swift */; };
 		7BD1FB661F93310E0063D22E /* Wolfman.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BD1FB651F93310E0063D22E /* Wolfman.swift */; };
 		7BFA1F3C1F931AF900A82175 /* ground.sks in Resources */ = {isa = PBXBuildFile; fileRef = 7BFA1F3B1F931AF900A82175 /* ground.sks */; };
+		EB81D5DF1F93CF44002A74C3 /* Dracula.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB81D5DE1F93CF44002A74C3 /* Dracula.swift */; };
 		EBF7DC291F91AC2800818617 /* EndGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC281F91AC2800818617 /* EndGame.swift */; };
 		EBF7DC2B1F91B9A700818617 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC2A1F91B9A600818617 /* StartScreen.swift */; };
 		EBF7DC2D1F91BE1B00818617 /* StartScreen.sks in Resources */ = {isa = PBXBuildFile; fileRef = EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */; };
@@ -63,6 +64,7 @@
 		7B86D0931F91A429007E2AE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BD1FB651F93310E0063D22E /* Wolfman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wolfman.swift; sourceTree = "<group>"; };
 		7BFA1F3B1F931AF900A82175 /* ground.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ground.sks; sourceTree = "<group>"; };
+		EB81D5DE1F93CF44002A74C3 /* Dracula.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dracula.swift; sourceTree = "<group>"; };
 		EBF7DC281F91AC2800818617 /* EndGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndGame.swift; sourceTree = "<group>"; };
 		EBF7DC2A1F91B9A600818617 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = StartScreen.sks; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 				EBF7DC341F927B0900818617 /* VanHelsing.swift */,
 				7BD1FB651F93310E0063D22E /* Wolfman.swift */,
 				EBF7DC3A1F93477100818617 /* Frankenstein.swift */,
+				EB81D5DE1F93CF44002A74C3 /* Dracula.swift */,
 			);
 			path = "something something zombies";
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				EBF7DC331F927A2900818617 /* Character.swift in Sources */,
 				EBF7DC2B1F91B9A700818617 /* StartScreen.swift in Sources */,
 				EBF7DC311F926D9C00818617 /* Zombie.swift in Sources */,
+				EB81D5DF1F93CF44002A74C3 /* Dracula.swift in Sources */,
 				7B86D0741F91A428007E2AE8 /* GameViewController.swift in Sources */,
 				7B86D06C1F91A428007E2AE8 /* AppDelegate.swift in Sources */,
 			);

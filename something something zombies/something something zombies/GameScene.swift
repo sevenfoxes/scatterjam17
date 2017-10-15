@@ -20,6 +20,7 @@ struct PhysicsCategory {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
+    private var draculas: [Dracula] = [Dracula]()
     private var fear: Int = 300
     private var fearCharge: Double = 0
     private var fearLabel: SKLabelNode?
@@ -34,12 +35,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var rageMomentum: Double = 1
     private var raiseDeadEnabled: Bool = false
     private var raiseDeadButton: SKSpriteNode?
+    private var suckBloodEnabled: Bool = false
+    private var suckBloodButton: SKSpriteNode?
     private var timer: Double?
     private var vanHelsing: VanHelsing = VanHelsing()
     private var zombies: [Zombie] = [Zombie]()
     private var wolfmen: [Wolfman] = [Wolfman]()
     
-    internal let fearGoal: Int = 400
+    internal let fearGoal: Int = 1000
     internal let rageGoal: Int = 100
     
     var viewController: GameViewController?
@@ -55,17 +58,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         addChild(castle)
         
         self.raiseDeadButton = SKSpriteNode(imageNamed: "raise-dead-disabled")
-        raiseDeadButton?.position = CGPoint(x: -270.0, y: -540.0)
+        raiseDeadButton?.position = CGPoint(x: -250.0, y: -540.0)
         self.fullMoonButton = SKSpriteNode(imageNamed: "full-moon-disabled")
-        fullMoonButton?.position = CGPoint(x: -110.0, y: -540.0)
+        fullMoonButton?.position = CGPoint(x: -87.5, y: -540.0)
         self.itsAliveButton = SKSpriteNode(imageNamed: "its-alive-disabled")
-        itsAliveButton?.position = CGPoint(x: 50.0, y: -540.0)
+        itsAliveButton?.position = CGPoint(x: 75.0, y: -540.0)
+        self.suckBloodButton = SKSpriteNode(imageNamed: "suck-blood-disabled")
+        suckBloodButton?.position = CGPoint(x: 237.5, y: -540.0)
         self.fearLabel = self.childNode(withName: "//fearCount") as? SKLabelNode
         self.rageLabel = self.childNode(withName: "//rageCount") as? SKLabelNode
         
         self.addChild(raiseDeadButton!)
         self.addChild(fullMoonButton!)
         self.addChild(itsAliveButton!)
+        self.addChild(suckBloodButton!)
         
         let backgroundMusic = SKAudioNode(fileNamed: "bg.mp3")
         backgroundMusic.autoplayLooped = true
@@ -116,7 +122,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         spawnFrankenstein()
     }
-    
+
+    //Suck Blood Button was touched
+    func suckBlood() {
+        if self.fear < 250 {
+            return
+        }
+        self.fear = self.fear - 250
+        
+        spawnDracula()
+    }
+
     //Create a zombie
     func spawnZombie() {
         let zombie: Zombie = Zombie()
@@ -167,6 +183,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.frankensteins.append(frankenstein)
     }
+    
+    //Create a dracula
+    func spawnDracula() {
+        let dracula: Dracula = Dracula()
+        dracula.physicsBody = SKPhysicsBody(rectangleOf: dracula.size)
+        dracula.physicsBody?.isDynamic = true
+        dracula.physicsBody?.categoryBitMask = PhysicsCategory.Monster
+        dracula.physicsBody?.contactTestBitMask = PhysicsCategory.VanHelsing
+        dracula.physicsBody?.collisionBitMask = PhysicsCategory.None
+        dracula.zPosition = 1
+        
+        self.addChild(dracula)
+        dracula.spawn()
+        dracula.move()
+        
+        self.draculas.append(dracula)
+    }
 
     //Called when Van Helsing collides with a monster (called by didBegin). Removes monster and increases rage
     func slayMonster(monster: Character) {
@@ -195,6 +228,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
+        //Test if dracula
+        if let testMonster = monster as? Dracula {
+            for (index, dracula) in draculas.enumerated() {
+                if dracula == monster {
+                    draculas.remove(at: index)
+                }
+            }
+        }
 
         monster.removeFromParent()
     }
@@ -212,6 +253,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 if n == self.itsAliveButton {
                     itsAlive()
+                }
+                if n == self.suckBloodButton {
+                    suckBlood()
                 }
             }
         }
@@ -247,11 +291,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             itsAliveEnabled = false
             itsAliveButton?.texture = SKTexture(imageNamed: "its-alive-disabled")
         }
+        if suckBloodEnabled == false && fear >= 250 {
+            suckBloodEnabled = true
+            suckBloodButton?.texture = SKTexture(imageNamed: "suck-blood")
+        }
+        if suckBloodEnabled == true && fear < 250 {
+            suckBloodEnabled = false
+            suckBloodButton?.texture = SKTexture(imageNamed: "suck-blood-disabled")
+        }
 
         if currentTime - self.timer! > 0.1 {
             fearCharge += 0.05 * Double(self.zombies.count)
             fearCharge += 0.3 * Double(self.wolfmen.count)
             fearCharge += 0.7 * Double(self.frankensteins.count)
+            fearCharge += 2.0 * Double(self.draculas.count)
             if fearCharge >= 1.0 && fear <= fearGoal { //Each monster contributes to incrementing fear amount. That's the fearCharge. When fearCharge is greater than 1, we actually increment the fear amount
                 fear += Int(floor(fearCharge))
                 fearCharge = fearCharge - Double(floor(fearCharge))
@@ -313,6 +366,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 slayMonster(monster: monster)
             }
             if let monster = secondBody.node as? Frankenstein {
+                slayMonster(monster: monster)
+            }
+            if let monster = secondBody.node as? Dracula {
                 slayMonster(monster: monster)
             }
         }
