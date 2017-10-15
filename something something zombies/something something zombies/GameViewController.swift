@@ -19,9 +19,11 @@ class GameViewController: UIViewController {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
                 scene.viewController = self
-                scene.message = "You did it!"
+                scene.message = "Fear rules the land."
+                scene.message2 = "Congratulations!"
                 if won == false {
-                    scene.message = "Better luck next time!"
+                    scene.message = "The villagers drove you out."
+                    scene.message2 = "Better luck next time!"
                 }
                 
                 // Present the scene
