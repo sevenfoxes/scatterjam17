@@ -45,6 +45,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didMove(to view: SKView) {
         physicsWorld.gravity = CGVector.zero
         physicsWorld.contactDelegate = self
+        
+        let castle = SKSpriteNode(imageNamed: "castle")
+        castle.position = CGPoint(x: 0, y: 441.82)
+        castle.size = CGSize(width: 364.242, height: 316.366)
+        addChild(castle)
+        
         self.raiseDeadButton = SKSpriteNode(imageNamed: "raise-dead-disabled")
         raiseDeadButton?.position = CGPoint(x: -270.0, y: -540.0)
         self.fullMoonButton = SKSpriteNode(imageNamed: "full-moon-disabled")
@@ -70,6 +76,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         vanHelsing.physicsBody?.collisionBitMask = PhysicsCategory.None
         
         self.addChild(vanHelsing)
+        vanHelsing.zPosition = 1;
         vanHelsing.spawn()
         vanHelsing.move()
     }
@@ -102,6 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         zombie.physicsBody?.categoryBitMask = PhysicsCategory.Monster
         zombie.physicsBody?.contactTestBitMask = PhysicsCategory.VanHelsing
         zombie.physicsBody?.collisionBitMask = PhysicsCategory.None
+        zombie.zPosition = 1;
         
         self.addChild(zombie)
         zombie.spawn()
@@ -118,6 +126,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         wolfman.physicsBody?.categoryBitMask = PhysicsCategory.Monster
         wolfman.physicsBody?.contactTestBitMask = PhysicsCategory.VanHelsing
         wolfman.physicsBody?.collisionBitMask = PhysicsCategory.None
+        wolfman.zPosition = 1
         
         self.addChild(wolfman)
         wolfman.spawn()

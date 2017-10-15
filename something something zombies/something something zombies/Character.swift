@@ -22,8 +22,8 @@ class Character: SKSpriteNode {
     }
     
     func move() {
-        //Generate a random position on the screen and move towards
-        let target: CGPoint = CGPoint(x:CGFloat(arc4random()).truncatingRemainder(dividingBy: self.scene!.size.width) - self.scene!.size.width / 2, y: CGFloat(arc4random()).truncatingRemainder(dividingBy: self.scene!.size.height) - self.scene!.size.height / 2)
+        //Generate a random position on the screen and move towards (-360.0 is to keep them below the castle
+        let target: CGPoint = CGPoint(x:CGFloat(arc4random()).truncatingRemainder(dividingBy: self.scene!.size.width) - self.scene!.size.width / 2, y: CGFloat(arc4random()).truncatingRemainder(dividingBy: self.scene!.size.height - 360.0) - self.scene!.size.height / 2)
         //Calculate distance
         let actualDistance = Double(sqrt(pow((target.x - self.position.x), 2) + pow((target.y - self.position.y), 2)))
         let actualDuration = actualDistance / moveSpeed
@@ -41,6 +41,6 @@ class Character: SKSpriteNode {
     
     func spawn() {
         //character position is based on the center of the screen so get the random x coordinate and then subtract it by half the screen width to get the right position. Same with y.
-        self.position = CGPoint(x: 0, y: 560)
+        self.position = CGPoint(x: 0, y: 320)
     }
 }
