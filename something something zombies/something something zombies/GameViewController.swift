@@ -46,6 +46,10 @@ class GameViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let uicolor = UIColor(patternImage: UIImage(named: "grass")!)
+        self.view.backgroundColor = uicolor
+    
+        
         if let view = self.view as! SKView? {
             // Load the SKScene from 'StartScreen.sks'
             if let scene = StartScreen(fileNamed: "StartScreen") {
