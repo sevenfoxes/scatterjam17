@@ -39,7 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var zombies: [Zombie] = [Zombie]()
     private var wolfmen: [Wolfman] = [Wolfman]()
     
-    internal let fearGoal: Int = 1000
+    internal let fearGoal: Int = 400
     internal let rageGoal: Int = 100
     
     var viewController: GameViewController?

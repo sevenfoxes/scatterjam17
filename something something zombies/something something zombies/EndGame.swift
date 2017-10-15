@@ -28,10 +28,15 @@ class EndGame: SKScene {
         if self.message2 != nil {
             message2Label!.text = message2
         }
+        self.playAgainButton = self.childNode(withName: "//playAgain") as? SKLabelNode
+        
+        messageLabel!.zPosition = 1
+        message2Label!.zPosition = 1
+        playAgainButton!.zPosition = 1
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.playAgainButton = self.childNode(withName: "//playAgain") as? SKLabelNode
         var touch: CGPoint
         for t in touches {
             touch = t.location(in: self)
