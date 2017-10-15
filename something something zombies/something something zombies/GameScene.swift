@@ -24,6 +24,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var fear: Int = 0
     private var rage: Int = 0
     private var raiseDeadButton: SKSpriteNode?
+    private var fullMoonButton: SKSpriteNode?
     private var rageLabel: SKLabelNode?
     private var fearLabel: SKLabelNode?
     private var fearCharge: Double = 0
@@ -33,6 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var inspireCourageCounter: Int = 0
     private var rageMomentum: Double = 1
     private var raiseDeadEnabled: Bool = false
+    private var fullMoonEnabled: Bool = false
     
     var viewController: GameViewController?
     
@@ -42,10 +44,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         self.raiseDeadButton = SKSpriteNode(imageNamed: "raise-dead-disabled")
         raiseDeadButton?.position = CGPoint(x: -270.0, y: -540.0)
+        self.fullMoonButton = SKSpriteNode(imageNamed: "full-moon-disabled")
+        fullMoonButton?.position = CGPoint(x: -110.0, y: -540.0)
         self.fearLabel = self.childNode(withName: "//fearCount") as? SKLabelNode
         self.rageLabel = self.childNode(withName: "//rageCount") as? SKLabelNode
         
         self.addChild(raiseDeadButton!)
+        self.addChild(fullMoonButton!)
         
         let backgroundMusic = SKAudioNode(fileNamed: "bg.mp3")
         backgroundMusic.autoplayLooped = true
@@ -128,6 +133,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if raiseDeadEnabled == true && fear < 10 {
             raiseDeadEnabled = false
             raiseDeadButton?.texture = SKTexture(imageNamed: "raise-dead-disabled")
+        }
+        if fullMoonEnabled == false && fear >= 50 {
+            fullMoonEnabled = true
+            fullMoonButton?.texture = SKTexture(imageNamed: "full-moon")
+        }
+        if fullMoonEnabled == true && fear < 50 {
+            fullMoonEnabled = false
+            fullMoonButton?.texture = SKTexture(imageNamed: "full-moon-disabled")
         }
         
         if currentTime - self.timer! > 0.1 {
