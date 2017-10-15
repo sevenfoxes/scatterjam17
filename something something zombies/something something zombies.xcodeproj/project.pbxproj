@@ -23,6 +23,7 @@
 		EBF7DC311F926D9C00818617 /* Zombie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC301F926D9C00818617 /* Zombie.swift */; };
 		EBF7DC331F927A2900818617 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC321F927A2900818617 /* Character.swift */; };
 		EBF7DC351F927B0900818617 /* VanHelsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC341F927B0900818617 /* VanHelsing.swift */; };
+		EBF7DC391F93233400818617 /* Wolfman.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBF7DC381F93233400818617 /* Wolfman.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		EBF7DC321F927A2900818617 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		EBF7DC341F927B0900818617 /* VanHelsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanHelsing.swift; sourceTree = "<group>"; };
 		EBF7DC361F92DC8D00818617 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bg.mp3; path = Assets.xcassets/bg.mp3; sourceTree = "<group>"; };
+		EBF7DC381F93233400818617 /* Wolfman.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wolfman.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				EBF7DC301F926D9C00818617 /* Zombie.swift */,
 				EBF7DC321F927A2900818617 /* Character.swift */,
 				EBF7DC341F927B0900818617 /* VanHelsing.swift */,
+				EBF7DC381F93233400818617 /* Wolfman.swift */,
 			);
 			path = "something something zombies";
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				7B86D0721F91A428007E2AE8 /* GameScene.swift in Sources */,
 				EBF7DC291F91AC2800818617 /* EndGame.swift in Sources */,
 				EBF7DC351F927B0900818617 /* VanHelsing.swift in Sources */,
+				EBF7DC391F93233400818617 /* Wolfman.swift in Sources */,
 				EBF7DC331F927A2900818617 /* Character.swift in Sources */,
 				EBF7DC2B1F91B9A700818617 /* StartScreen.swift in Sources */,
 				EBF7DC311F926D9C00818617 /* Zombie.swift in Sources */,
