@@ -20,12 +20,15 @@ struct PhysicsCategory {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var fear: Int = 0
+    private var fear: Int = 300
     private var fearCharge: Double = 0
     private var fearLabel: SKLabelNode?
+    private var frankensteins: [Frankenstein] = [Frankenstein]()
     private var fullMoonButton: SKSpriteNode?
     private var fullMoonEnabled: Bool = false
     private var inspireCourageCounter: Int = 0
+    private var itsAliveButton: SKSpriteNode?
+    private var itsAliveEnabled: Bool = false
     private var rage: Int = 0
     private var rageLabel: SKLabelNode?
     private var rageMomentum: Double = 1
@@ -55,11 +58,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         raiseDeadButton?.position = CGPoint(x: -270.0, y: -540.0)
         self.fullMoonButton = SKSpriteNode(imageNamed: "full-moon-disabled")
         fullMoonButton?.position = CGPoint(x: -110.0, y: -540.0)
+        self.itsAliveButton = SKSpriteNode(imageNamed: "its-alive-disabled")
+        itsAliveButton?.position = CGPoint(x: 50.0, y: -540.0)
         self.fearLabel = self.childNode(withName: "//fearCount") as? SKLabelNode
         self.rageLabel = self.childNode(withName: "//rageCount") as? SKLabelNode
         
         self.addChild(raiseDeadButton!)
         self.addChild(fullMoonButton!)
+        self.addChild(itsAliveButton!)
         
         let backgroundMusic = SKAudioNode(fileNamed: "bg.mp3")
         backgroundMusic.autoplayLooped = true
@@ -101,6 +107,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnWolfman()
     }
     
+    //It's Alive Button was touched
+    func itsAlive() {
+        if self.fear < 100 {
+            return
+        }
+        self.fear = self.fear - 100
+        
+        spawnFrankenstein()
+    }
+    
     //Create a zombie
     func spawnZombie() {
         let zombie: Zombie = Zombie()
@@ -134,6 +150,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.wolfmen.append(wolfman)
     }
+    
+    //Create a frankenstein
+    func spawnFrankenstein() {
+        let frankenstein: Frankenstein = Frankenstein()
+        frankenstein.physicsBody = SKPhysicsBody(rectangleOf: frankenstein.size)
+        frankenstein.physicsBody?.isDynamic = true
+        frankenstein.physicsBody?.categoryBitMask = PhysicsCategory.Monster
+        frankenstein.physicsBody?.contactTestBitMask = PhysicsCategory.VanHelsing
+        frankenstein.physicsBody?.collisionBitMask = PhysicsCategory.None
+        frankenstein.zPosition = 1
+        
+        self.addChild(frankenstein)
+        frankenstein.spawn()
+        frankenstein.move()
+        
+        self.frankensteins.append(frankenstein)
+    }
 
     //Called when Van Helsing collides with a monster (called by didBegin). Removes monster and increases rage
     func slayMonster(monster: Character) {
@@ -154,6 +187,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
+        //Test if frankenstein
+        if let testMonster = monster as? Frankenstein {
+            for (index, frankenstein) in frankensteins.enumerated() {
+                if frankenstein == monster {
+                    frankensteins.remove(at: index)
+                }
+            }
+        }
 
         monster.removeFromParent()
     }
@@ -168,6 +209,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
                 if n == self.fullMoonButton {
                     fullMoon()
+                }
+                if n == self.itsAliveButton {
+                    itsAlive()
                 }
             }
         }
@@ -195,13 +239,22 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             fullMoonEnabled = false
             fullMoonButton?.texture = SKTexture(imageNamed: "full-moon-disabled")
         }
-        
+        if itsAliveEnabled == false && fear >= 100 {
+            itsAliveEnabled = true
+            itsAliveButton?.texture = SKTexture(imageNamed: "its-alive")
+        }
+        if itsAliveEnabled == true && fear < 100 {
+            itsAliveEnabled = false
+            itsAliveButton?.texture = SKTexture(imageNamed: "its-alive-disabled")
+        }
+
         if currentTime - self.timer! > 0.1 {
             fearCharge += 0.05 * Double(self.zombies.count)
             fearCharge += 0.3 * Double(self.wolfmen.count)
+            fearCharge += 0.7 * Double(self.frankensteins.count)
             if fearCharge >= 1.0 && fear <= fearGoal { //Each monster contributes to incrementing fear amount. That's the fearCharge. When fearCharge is greater than 1, we actually increment the fear amount
-                fear += 1
-                fearCharge = fearCharge - 1.0
+                fear += Int(floor(fearCharge))
+                fearCharge = fearCharge - Double(floor(fearCharge))
             }
             
             //Handle Van Helsing Inspiring Courage
@@ -257,6 +310,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 slayMonster(monster: monster)
             }
             if let monster = secondBody.node as? Wolfman {
+                slayMonster(monster: monster)
+            }
+            if let monster = secondBody.node as? Frankenstein {
                 slayMonster(monster: monster)
             }
         }
