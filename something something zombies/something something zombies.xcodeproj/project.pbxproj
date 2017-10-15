@@ -65,6 +65,7 @@
 		EBF7DC301F926D9C00818617 /* Zombie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zombie.swift; sourceTree = "<group>"; };
 		EBF7DC321F927A2900818617 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		EBF7DC341F927B0900818617 /* VanHelsing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VanHelsing.swift; sourceTree = "<group>"; };
+		EBF7DC361F92DC8D00818617 /* bg.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bg.mp3; path = Assets.xcassets/bg.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +124,7 @@
 				7B86D0711F91A428007E2AE8 /* GameScene.swift */,
 				7B86D0731F91A428007E2AE8 /* GameViewController.swift */,
 				7B86D07D1F91A428007E2AE8 /* Info.plist */,
+				EBF7DC361F92DC8D00818617 /* bg.mp3 */,
 				7B86D0751F91A428007E2AE8 /* Main.storyboard */,
 				EBF7DC2A1F91B9A600818617 /* StartScreen.swift */,
 				EBF7DC2C1F91BE1B00818617 /* StartScreen.sks */,

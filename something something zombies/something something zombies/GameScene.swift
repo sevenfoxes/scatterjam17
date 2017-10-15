@@ -42,6 +42,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.raiseDeadButton = self.childNode(withName: "//raiseDead") as? SKLabelNode
         self.fearLabel = self.childNode(withName: "//fearCount") as? SKLabelNode
         self.rageLabel = self.childNode(withName: "//rageCount") as? SKLabelNode
+        
+        let backgroundMusic = SKAudioNode(fileNamed: "bg.mp3")
+        backgroundMusic.autoplayLooped = true
+        addChild(backgroundMusic)
 
         //TODO: calculate the size this way after we switch from SKLabelNodes to SKSpriteNodes
         //vanHelsing.physicsBody = SKPhysicsBody(rectangleOf: vanHelsing.size)
