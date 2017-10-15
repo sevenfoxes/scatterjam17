@@ -13,6 +13,14 @@ class Character: SKSpriteNode {
     
     var moveSpeed: Double = 10.0
     
+    func animateLeft() {
+        
+    }
+    
+    func animateRight() {
+        
+    }
+    
     func move() {
         //Generate a random position on the screen and move towards
         let target: CGPoint = CGPoint(x:CGFloat(arc4random()).truncatingRemainder(dividingBy: self.scene!.size.width) - self.scene!.size.width / 2, y: CGFloat(arc4random()).truncatingRemainder(dividingBy: self.scene!.size.height) - self.scene!.size.height / 2)
@@ -20,6 +28,12 @@ class Character: SKSpriteNode {
         let actualDistance = Double(sqrt(pow((target.x - self.position.x), 2) + pow((target.y - self.position.y), 2)))
         let actualDuration = actualDistance / moveSpeed
         let actionMove = SKAction.move(to: target, duration: TimeInterval(actualDuration))
+        if (target.x < self.position.x) {
+            animateLeft()
+        }
+        else {
+            animateRight()
+        }
         self.run(actionMove) {
             self.move()
         }
