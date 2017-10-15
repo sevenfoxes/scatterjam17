@@ -20,19 +20,24 @@ struct PhysicsCategory {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    private var tapCount: Int = 0
     private var fear: Int = 0
-    private var rage: Int = 0
-    private var raiseDeadButton: SKSpriteNode?
-    private var rageLabel: SKLabelNode?
-    private var fearLabel: SKLabelNode?
     private var fearCharge: Double = 0
-    private var zombies: [Zombie] = [Zombie]()
-    private var timer: Double?
-    private var vanHelsing: VanHelsing = VanHelsing()
+    private var fearLabel: SKLabelNode?
+    private var fullMoonButton: SKSpriteNode?
+    private var fullMoonEnabled: Bool = false
     private var inspireCourageCounter: Int = 0
+    private var rage: Int = 0
+    private var rageLabel: SKLabelNode?
     private var rageMomentum: Double = 1
     private var raiseDeadEnabled: Bool = false
+    private var raiseDeadButton: SKSpriteNode?
+    private var timer: Double?
+    private var vanHelsing: VanHelsing = VanHelsing()
+    private var zombies: [Zombie] = [Zombie]()
+    private var wolfmen: [Wolfman] = [Wolfman]()
+    
+    internal let fearGoal: Int = 1000
+    internal let rageGoal: Int = 100
     
     var viewController: GameViewController?
     
@@ -42,10 +47,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         self.raiseDeadButton = SKSpriteNode(imageNamed: "raise-dead-disabled")
         raiseDeadButton?.position = CGPoint(x: -270.0, y: -540.0)
+        self.fullMoonButton = SKSpriteNode(imageNamed: "full-moon-disabled")
+        fullMoonButton?.position = CGPoint(x: -110.0, y: -540.0)
         self.fearLabel = self.childNode(withName: "//fearCount") as? SKLabelNode
         self.rageLabel = self.childNode(withName: "//rageCount") as? SKLabelNode
         
         self.addChild(raiseDeadButton!)
+        self.addChild(fullMoonButton!)
         
         let backgroundMusic = SKAudioNode(fileNamed: "bg.mp3")
         backgroundMusic.autoplayLooped = true
@@ -76,6 +84,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         spawnZombie()
     }
     
+    //Full Moon Button was touched
+    func fullMoon() {
+        if self.fear < 50 {
+            return
+        }
+        self.fear = self.fear - 50
+        
+        spawnWolfman()
+    }
+    
     //Create a zombie
     func spawnZombie() {
         let zombie: Zombie = Zombie()
@@ -91,15 +109,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         self.zombies.append(zombie)
     }
-    
-    //Called when Van Helsing collides with a monster (called by didBegin). Removes zombie and increases rage
-    func slayMonster(monster: Zombie) {
-        rage = Int(Double(rage) + 5.0)
-        for (index, zombie) in zombies.enumerated() {
-            if zombie == monster {
-                zombies.remove(at: index)
+
+    //Create a wolfman
+    func spawnWolfman() {
+        let wolfman: Wolfman = Wolfman()
+        wolfman.physicsBody = SKPhysicsBody(rectangleOf: wolfman.size)
+        wolfman.physicsBody?.isDynamic = true
+        wolfman.physicsBody?.categoryBitMask = PhysicsCategory.Monster
+        wolfman.physicsBody?.contactTestBitMask = PhysicsCategory.VanHelsing
+        wolfman.physicsBody?.collisionBitMask = PhysicsCategory.None
+        
+        self.addChild(wolfman)
+        wolfman.spawn()
+        wolfman.move()
+        
+        self.wolfmen.append(wolfman)
+    }
+
+    //Called when Van Helsing collides with a monster (called by didBegin). Removes monster and increases rage
+    func slayMonster(monster: Character) {
+        rage = Int(Double(rage) + 1.0)
+        //Test if zombie
+        if let testMonster = monster as? Zombie {
+            for (index, zombie) in zombies.enumerated() {
+                if zombie == monster {
+                    zombies.remove(at: index)
+                }
             }
         }
+        //Test if wolfman
+        if let testMonster = monster as? Wolfman {
+            for (index, wolfman) in wolfmen.enumerated() {
+                if wolfman == monster {
+                    wolfmen.remove(at: index)
+                }
+            }
+        }
+
         monster.removeFromParent()
     }
     
@@ -110,6 +156,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             for n in self.nodes(at: touch) {
                 if n == self.raiseDeadButton {
                     raiseDead()
+                }
+                if n == self.fullMoonButton {
+                    fullMoon()
                 }
             }
         }
@@ -129,10 +178,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             raiseDeadEnabled = false
             raiseDeadButton?.texture = SKTexture(imageNamed: "raise-dead-disabled")
         }
+        if fullMoonEnabled == false && fear >= 50 {
+            fullMoonEnabled = true
+            fullMoonButton?.texture = SKTexture(imageNamed: "full-moon")
+        }
+        if fullMoonEnabled == true && fear < 50 {
+            fullMoonEnabled = false
+            fullMoonButton?.texture = SKTexture(imageNamed: "full-moon-disabled")
+        }
         
         if currentTime - self.timer! > 0.1 {
             fearCharge += 0.05 * Double(self.zombies.count)
-            if fearCharge >= 1.0 && fear < 101 { //Each monster contributes to incrementing fear amount. That's the fearCharge. When fearCharge is greater than 1, we actually increment the fear amount
+            fearCharge += 0.3 * Double(self.wolfmen.count)
+            if fearCharge >= 1.0 && fear <= fearGoal { //Each monster contributes to incrementing fear amount. That's the fearCharge. When fearCharge is greater than 1, we actually increment the fear amount
                 fear += 1
                 fearCharge = fearCharge - 1.0
             }
@@ -154,12 +212,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 
         //Trigger end game with winning message
-        if fear >= 1000 && self.viewController != nil {
+        if fear >= fearGoal && self.viewController != nil {
             self.viewController!.endGame(won: true)
         }
         
         //Trigger end game with losing message
-        if rage >= 100 && self.viewController != nil {
+        if rage >= rageGoal && self.viewController != nil {
             self.viewController!.endGame(won: false)
         }
         
@@ -187,6 +245,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategory.VanHelsing != 0) &&
             (secondBody.categoryBitMask & PhysicsCategory.Monster != 0)) {
             if let monster = secondBody.node as? Zombie {
+                slayMonster(monster: monster)
+            }
+            if let monster = secondBody.node as? Wolfman {
                 slayMonster(monster: monster)
             }
         }
