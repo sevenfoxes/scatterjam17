@@ -13,7 +13,9 @@ class EndGame: SKScene {
     
     private var playAgainButton : SKLabelNode?
     private var messageLabel: SKLabelNode?
+    private var message2Label: SKLabelNode?
     var message: String?
+    var message2: String?
     
     var viewController: GameViewController?
     
@@ -21,6 +23,10 @@ class EndGame: SKScene {
         messageLabel = self.childNode(withName: "//message") as? SKLabelNode
         if self.message != nil {
             messageLabel!.text = message
+        }
+        message2Label = self.childNode(withName: "//message2") as? SKLabelNode
+        if self.message2 != nil {
+            message2Label!.text = message2
         }
     }
     
