@@ -27,7 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var rageLabel: SKLabelNode?
     private var fearLabel: SKLabelNode?
     private var fearCharge: Double = 0
-    private var zombies: [SKLabelNode] = [SKLabelNode]()
+    private var zombies: [Zombie] = [Zombie]()
     private var timer: Double?
     private var vanHelsing: VanHelsing = VanHelsing()
     private var inspireCourageCounter: Int = 0
@@ -47,10 +47,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         backgroundMusic.autoplayLooped = true
         addChild(backgroundMusic)
 
-        //TODO: calculate the size this way after we switch from SKLabelNodes to SKSpriteNodes
-        //vanHelsing.physicsBody = SKPhysicsBody(rectangleOf: vanHelsing.size)
-        vanHelsing.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 30.0,
-                                                                   height: 30.0))
+        vanHelsing.physicsBody = SKPhysicsBody(rectangleOf: vanHelsing.size)
         vanHelsing.physicsBody?.isDynamic = true
         vanHelsing.physicsBody?.categoryBitMask = PhysicsCategory.VanHelsing
         vanHelsing.physicsBody?.contactTestBitMask = PhysicsCategory.Monster
@@ -69,10 +66,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.fear = self.fear - 10
         
         let zombie: Zombie = Zombie()
-        //TODO: calculate the size this way after we switch from SKLabelNodes to SKSpriteNodes
-        //zombie.physicsBody = SKPhysicsBody(rectangleOf: zombie.size)
-        zombie.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 30.0,
-                                                               height: 30.0))
+        zombie.physicsBody = SKPhysicsBody(rectangleOf: zombie.size)
         zombie.physicsBody?.isDynamic = true
         zombie.physicsBody?.categoryBitMask = PhysicsCategory.Monster
         zombie.physicsBody?.contactTestBitMask = PhysicsCategory.VanHelsing

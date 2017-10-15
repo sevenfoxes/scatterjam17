@@ -11,12 +11,9 @@ import SpriteKit
 
 class VanHelsing: Character {
     
-    override init() {
-        super.init()
-        self.text = "V"
-        self.fontColor = SKColor.red
-        self.fontName = "Helvetica"
-        self.fontSize = 48
+    init() {
+        let texture = SKTexture(imageNamed: "van-helsing")
+        super.init(texture: texture, color: UIColor.clear, size: texture.size())
         moveSpeed = 100.0
     }
     

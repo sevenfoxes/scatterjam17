@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class Character: SKLabelNode {
+class Character: SKSpriteNode {
     
     var moveSpeed: Double = 10.0
     

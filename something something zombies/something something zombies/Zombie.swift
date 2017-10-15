@@ -11,12 +11,9 @@ import SpriteKit
 
 class Zombie: Character {
     
-    override init() {
-        super.init()
-        self.text = "Z"
-        self.fontColor = SKColor.green
-        self.fontName = "Helvetica"
-        self.fontSize = 48
+    init() {
+        let texture = SKTexture(imageNamed: "zombie")
+        super.init(texture: texture, color: UIColor.clear, size: texture.size())
         moveSpeed = 10.0
     }
     
